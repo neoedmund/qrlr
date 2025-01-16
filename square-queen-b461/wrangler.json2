@@ -6,6 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "square-queen-b461",
   "main": "src/index.js",
+	"pages_build_output_dir" : "./dist" ,
   "compatibility_date": "2025-01-09",
   "observability": {
     "enabled": true
