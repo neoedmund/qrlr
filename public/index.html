@@ -1,1 +1,67 @@
-hello world.
+<!doctype html> <HTML > <HEAD >
+		<meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8" />
+		<meta name = "viewport" content = "width=device-width, initial-scale=1" />
+		<script type = "text/javascript" src = "jquery.min.js" > </script >
+		<TITLE > QR Gen </TITLE >
+		<style >
+			.alignL {
+				width:100%;
+			}
+			.alignR {
+				width:100%;
+				text-align: right;
+			}
+		</style > <script >
+			function doGen ( ) {
+				var comm = $( '#comm' ) .val( )
+				var cont = $( '#cont' ) .val( ) .trim( )
+				if ( cont ) {
+					addRow( comm, cont, getLastClass( ) )
+				} else {
+					console.log( 'input Content please' )
+				}
+			}
+			function removeMeRow( self ) {
+				console.log( self )
+				$( self ) .parent( ) .remove( )
+			}
+			function getLastClass( ) {
+				var ch = $( "#res" ) .children( )
+				console.log( ch )
+				if ( ch.length > 0 ) {
+				return $( ch [ 0 ] ) .hasClass( 'alignL' ) ? 1:0
+			} else {
+				return 0
+			}
+		}
+		function addRow( comm, cont, lastCls ) {
+			reqServer( { act: 'row', comm:comm, cont:cont, lastCls:lastCls }, function ( m ) {
+					$( '#res' ) .prepend( m.html )
+					$( '#comm' ) .val( '' )
+					$( '#cont' ) .val( '' )
+				} )
+		}
+		function reqServer ( param ,okFunc ) {
+			$ . ajax ( {
+					type : 'POST' ,url : 'app.json' ,data : param ,dataType : 'json',
+					success : function ( data ) { okFunc ( data ) ; } ,
+					error : function ( err ) { alert ( err ) } ,
+					contentType : 'application/x-www-form-urlencoded; charset=utf-8'
+				} ) ;
+		}
+
+		$( function( ) {
+				reqServer( { act: 'ver' }, function ( m ) { // test by get version
+						console.log( m.msg )
+					} )
+			} ) ;
+	</script >
+</head > <body >
+	Comments: <input type = text id = comm />
+	Content: <input type = text id = cont />
+	<button type = button onclick = 'doGen()' > Gen </button >
+	<hr />
+	<div id = "res" >
+
+	</div >
+</body >

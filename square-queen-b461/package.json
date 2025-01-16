@@ -12,5 +12,8 @@
     "@cloudflare/vitest-pool-workers": "^0.5.2",
     "vitest": "2.1.8",
     "wrangler": "^3.103.0"
+  },
+  "dependencies": {
+    "qrcode-svg": "^1.1.0"
   }
 }
