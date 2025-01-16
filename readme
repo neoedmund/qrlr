@@ -1,2 +1,3 @@
 Qr code gen to upload to cloudflare pages
-
+----
+use workers not pages
