@@ -19,7 +19,7 @@ export default {
 		}
 		// Passes the incoming request through to the assets binding.
 		// No asset matched this request, so this will evaluate `not_found_handling` behavior.
-		return env . ASSETS . fetch ( request )
+		return env . ST . fetch ( request )
 	} ,
 }
 async function genQr ( request , env , sr0 ) {
