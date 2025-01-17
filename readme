@@ -1,3 +1,8 @@
 Qr code gen to upload to cloudflare pages
 ----
 use workers not pages
+
+npm install --save qrcode-svg
+npx wrangler dev
+npx wrangler deploy
+

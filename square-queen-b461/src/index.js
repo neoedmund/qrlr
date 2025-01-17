@@ -12,14 +12,11 @@ export default {
 	async fetch ( request , env ) {
 		const url = new URL ( request . url )
 		// console . log ( 'path=' , url . pathname )
-		if ( url . pathname == "/app.json" ) {
-			return app_json ( request , env )
-		} else if ( url . pathname == "/qr.png" ) {
-			return genQr ( request , env , url . search )
+		switch ( url . pathname ) {
+			case "/app.json" : return app_json ( request , env )
+			case "/qr.png" : return genQr ( request , env , url . search )
+			default : return env . ST . fetch ( request )
 		}
-		// Passes the incoming request through to the assets binding.
-		// No asset matched this request, so this will evaluate `not_found_handling` behavior.
-		return env . ST . fetch ( request )
 	} ,
 }
 async function genQr ( request , env , sr0 ) {
