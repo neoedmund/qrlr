@@ -24,7 +24,7 @@ async function genQr ( request , env , sr0 ) {
 	var k = sr . get ( 'k' )
 	console . log ( 'k=' + k )
 	if ( k == '' ) { k = "empty" }
-	const qr = new QRCode ( { content : k , width : 128 , height : 128, ecl: "H" } )
+	const qr = new QRCode ( { content : k , width : 128 , height : 128, ecl: "L" } )
 	return new Response ( qr . svg ( ) , { headers : { "Content-Type" : "image/svg+xml" } } )
 }
 async function app_json ( request , env ) {
